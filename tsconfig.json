@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "module": "CommonJS",
     "target": "es2015",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "bin",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]
-    },
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  },
-  "include": ["src/**/*"]
+    "types": ["node"],
+    "declarationDir": "build/types"
+  }
 }

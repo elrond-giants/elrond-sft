@@ -1,4 +1,5 @@
-bin
+build
 node_modules
 *.pem
 config.json
+.DS_Store

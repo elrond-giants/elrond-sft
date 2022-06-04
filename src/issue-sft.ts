@@ -10,10 +10,11 @@ import {
     TransactionPayload,
     U32Value,
 } from '@elrondnetwork/erdjs/out';
+import axios from 'axios';
 import prompts, { PromptObject } from 'prompts';
 
-import { chain, chainId, elrondExplorer, issueTokenScAddress, pemKeyFileName } from './config';
-import { publicEndpointSetup } from './utils';
+import { chain, chainId, elrondExplorer, issueTokenScAddress, pemKeyFileName, proxyGateways } from './config';
+import { loadConfigFromFile, publicEndpointSetup, saveConfigToFile } from './utils';
 
 export const issueToken = async () => {
   const promptQuestions: PromptObject[] = [
@@ -67,6 +68,8 @@ export const issueToken = async () => {
 
     const { signer, provider, userAccount } = await publicEndpointSetup(pemKeyFileName);
 
+    console.log("Sending transaction...");
+
     transaction.setNonce(userAccount.nonce);
     userAccount.incrementNonce();
 
@@ -74,37 +77,36 @@ export const issueToken = async () => {
 
     await transaction.send(provider);
 
-    await transaction.awaitHashed();
+    await transaction.awaitNotarized(provider);
     const txHash = transaction.getHash();
 
     console.log(`Issue token transaction  ${elrondExplorer[chain]}/transactions/${txHash}`);
+
+    // Get the token identifier from the transaction response & save it to a JSON file to use in other methods
+    const { data } = await axios.get(`${proxyGateways[chain]}/transactions/${txHash}`);
+    const tokenIdentifierBase64 = data?.logs?.events?.[0]?.topics?.[0];
+    if (tokenIdentifierBase64) {
+      const tokenIdentifier = Buffer.from(tokenIdentifierBase64, "base64").toString("utf-8");
+      saveConfigToFile({
+        tokenIdentifier,
+      });
+      console.log(`Token identifier ${tokenIdentifier}`);
+    }
   } catch (e) {
     console.log(e);
   }
 };
 
 export const setRoles = async () => {
-  const promptQuestions: PromptObject[] = [
-    {
-      type: "text",
-      name: "tokenIdentifier",
-      message: "Token Itenditier (ex GIANTS-93cadd)",
-      validate: (value) => {
-        if (!value) return "Required!";
-        if (value.length > 20 || value.length < 7) {
-          return "Length between 7 and 20 characters!";
-        }
-        if (!new RegExp(/^([A-Z0-9])+-([a-z0-9]){6}$/).test(value)) {
-          return "Invalid token identifier!";
-        }
-        return true;
-      },
-    },
-  ];
+  const config = loadConfigFromFile();
+  if (!config.tokenIdentifier) {
+    console.log('Token identifier not found. Please run "issue-token" command first.');
+    return;
+  }
+
+  const tokenIdentifier = config.tokenIdentifier;
 
   try {
-    const { tokenIdentifier } = await prompts(promptQuestions);
-
     const { signer, provider, userAccount } = await publicEndpointSetup(pemKeyFileName);
 
     let payload = TransactionPayload.contractCall()
@@ -140,22 +142,15 @@ export const setRoles = async () => {
 };
 
 export const mintSft = async () => {
+  const config = loadConfigFromFile();
+  if (!config.tokenIdentifier) {
+    console.log('Token identifier not found. Please run "issue-token" command first.');
+    return;
+  }
+
+  const tokenIdentifier = config.tokenIdentifier;
+
   const promptQuestions: PromptObject[] = [
-    {
-      type: "text",
-      name: "tokenIdentifier",
-      message: "Token Itenditier (ex GIANTS-93cadd)",
-      validate: (value) => {
-        if (!value) return "Required!";
-        if (value.length > 20 || value.length < 7) {
-          return "Length between 7 and 20 characters!";
-        }
-        if (!new RegExp(/^([A-Z0-9])+-([a-z0-9]){6}$/).test(value)) {
-          return "Invalid token identifier!";
-        }
-        return true;
-      },
-    },
     {
       type: "number",
       name: "qunatity",
@@ -243,9 +238,7 @@ export const mintSft = async () => {
   ];
 
   try {
-    const { tokenIdentifier, qunatity, sftName, royalties, metadataCid, tags, imageCid } = await prompts(
-      promptQuestions
-    );
+    const { qunatity, sftName, royalties, metadataCid, tags, imageCid } = await prompts(promptQuestions);
 
     const { signer, provider, userAccount } = await publicEndpointSetup(pemKeyFileName);
 

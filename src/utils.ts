@@ -1,5 +1,5 @@
 import { Account, IProvider, NetworkConfig, parseUserKey, ProxyProvider, UserSigner } from '@elrondnetwork/erdjs';
-import { accessSync, readFileSync } from 'fs';
+import { accessSync, readFileSync, writeFileSync } from 'fs';
 import { cwd, exit } from 'process';
 
 import { chain, pemKeyFileName, proxyGateways } from './config';
@@ -66,4 +66,20 @@ export const publicEndpointSetup = async (_pemKeyFileName?: string) => {
     userAccount,
     provider,
   };
+};
+
+interface IConfig {
+  tokenIdentifier: string;
+}
+
+export const saveConfigToFile = (data: IConfig) => {
+  const filePath = `${baseDir}/config.json`;
+  const fileString = JSON.stringify(data, null, 2);
+  writeFileSync(filePath, fileString);
+};
+
+export const loadConfigFromFile = (): IConfig => {
+  const filePath = `${baseDir}/config.json`;
+  const fileString = readFileSync(filePath, "utf8");
+  return JSON.parse(fileString);
 };

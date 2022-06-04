@@ -1,0 +1,37 @@
+{
+  "name": "elrond-sft-issue-airdrop",
+  "version": "1.0.0",
+  "description": "A simple CLI tool you can use to execute simple operations over Elrond SFTs (issue token, mint SFT, add qty, burn)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf bin && tsc"
+  },
+  "bin": "bin/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razvanstatescu/elrond-sft-issue-airdrop.git"
+  },
+  "keywords": [
+    "elrond",
+    "elrond sft",
+    "blockchain",
+    "cli",
+    "erdjs"
+  ],
+  "author": "Razvan Statescu <statescu.net>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop/issues"
+  },
+  "homepage": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.39",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "@elrondnetwork/erdjs": "^9.0.3",
+    "prompts": "^2.4.2"
+  }
+}

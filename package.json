@@ -1,6 +1,6 @@
 {
   "name": "elrond-sft",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A simple CLI tool you can use to execute simple operations over Elrond SFTs (issue token, mint SFT, add qty, burn)",
   "main": "build/index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop/issues"
   },
+  "types": "build/types",
   "homepage": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop#readme",
   "devDependencies": {
     "@types/node": "^17.0.39",

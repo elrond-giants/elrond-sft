@@ -4,15 +4,15 @@ This is a CLI tool you can use to execute SFT related operations on the Elrond N
 
 ## What can you do
 
-- issue token
-- set roles
-- mint SFT
+- issue token `elrond-sft issue-token`
+- set roles `elrond-sft set-roles`
+- mint SFT `elrond-sft mint-sft`
 
 ## Getting Started
 
 ### Install package
 
-`npm i package123`
+`npm i elrond-sft`
 
 ### Generate a PEM file wallet
 
@@ -24,16 +24,16 @@ _You can use [erdpy](https://docs.elrond.com/sdk-and-tools/erdpy/erdpy/) to gene
 Before you mint an SFT you will need to issue a token and assign some roles to it.
 
 1. Issue Token
-   Run `package123 issue-token` and fill in the Token Name and the Token Ticker.
+   Run `elrond-sft issue-token` and fill in the Token Name and the Token Ticker.
    _Make sure you don't include any spaces in the Token Name._
    _Make sure to only use Uppercase chars in the Token Ticker and avoid spaces._
 
 2. Set Roles
    _In order to be able to perform actions over a token (mint, burn, etc), one needs to have roles assigned._
-   In order to assign the roles, you need to run `package123 set-roles`.
+   In order to assign the roles, you need to run `elrond-sft set-roles`.
 
 3. Mint SFT
-   Now that we have a token and the roles, you can finally mint the SFT by running `package123 mint-sft`.
+   Now that we have a token and the roles, you can finally mint the SFT by running `elrond-sft mint-sft`.
 
 ## TODO
 

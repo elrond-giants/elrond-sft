@@ -2,9 +2,7 @@
 import { argv, exit } from 'process';
 
 import packageJson from '../package.json';
-import { hexToString } from './helpers';
 import { issueToken, mintSft, setRoles } from './issue-sft';
-
 
 const COMMANDS = {
   issueToken: "issue-token",
@@ -12,7 +10,6 @@ const COMMANDS = {
   mintSft: "mint-sft",
   addSftQuantity: "add-sft-quantity",
   burnSft: "burn-sft",
-  hexToString: "hex-to-string",
 };
 
 const args = argv;
@@ -54,8 +51,11 @@ switch (command) {
   case COMMANDS.mintSft:
     mintSft();
     break;
-  case COMMANDS.hexToString:
-    hexToString(args[3]);
+  case COMMANDS.addSftQuantity:
+    console.log("Not Implemented");
+    break;
+  case COMMANDS.burnSft:
+    console.log("Not Implemented");
     break;
   default:
     break;

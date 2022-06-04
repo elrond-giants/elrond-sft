@@ -1,8 +1,10 @@
+#!/usr/bin/env node
 import { argv, exit } from 'process';
 
 import packageJson from '../package.json';
 import { hexToString } from './helpers';
 import { issueToken, mintSft, setRoles } from './issue-sft';
+
 
 const COMMANDS = {
   issueToken: "issue-token",

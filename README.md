@@ -2,6 +2,12 @@
 
 This is a CLI tool you can use to execute SFT related operations on the Elrond Network.
 
+## What can you do
+
+- issue token
+- set roles
+- mint SFT
+
 ## Getting Started
 
 ### Install package
@@ -28,3 +34,14 @@ Before you mint an SFT you will need to issue a token and assign some roles to i
 
 3. Mint SFT
    Now that we have a token and the roles, you can finally mint the SFT by running `package123 mint-sft`.
+
+## TODO
+
+- add quantity command
+- burn command
+- airdrop SFT to a list of addresses
+- refactor erdjs interactions
+
+## Resources
+
+- Some wallet interaction methods are taken from [elven-tools-cli](https://github.com/ElvenTools/elven-tools-cli)

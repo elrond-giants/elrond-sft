@@ -1,6 +1,6 @@
 {
   "name": "elrond-sft",
-  "version": "1.0.12",
+  "version": "2.0.0",
   "description": "A simple CLI tool you can use to execute simple operations over Elrond SFTs (issue token, mint SFT, add qty, burn)",
   "main": "build/index.js",
   "scripts": {

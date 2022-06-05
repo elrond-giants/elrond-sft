@@ -10,9 +10,9 @@ This is a CLI tool you can use to execute SFT related operations on the Elrond N
 
 ## Getting Started
 
-### Install package
+### Install package globally
 
-`npm i elrond-sft`
+`npm i -g elrond-sft`
 
 ### Generate a PEM file wallet
 

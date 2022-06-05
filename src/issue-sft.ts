@@ -109,6 +109,8 @@ export const setRoles = async () => {
   try {
     const { signer, provider, userAccount } = await publicEndpointSetup(pemKeyFileName);
 
+    console.log("Sending transaction...");
+
     let payload = TransactionPayload.contractCall()
       .setFunction(new ContractFunction("setSpecialRole"))
       .addArg(new BytesValue(Buffer.from(tokenIdentifier, "utf-8")))
@@ -132,7 +134,7 @@ export const setRoles = async () => {
 
     await transaction.send(provider);
 
-    await transaction.awaitHashed();
+    await transaction.awaitNotarized(provider);
     const txHash = transaction.getHash();
 
     console.log(`Set Roles Transaction  ${elrondExplorer[chain]}/transactions/${txHash}`);

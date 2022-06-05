@@ -11,7 +11,7 @@
   "bin": "build/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/razvanstatescu/elrond-sft-issue-airdrop.git"
+    "url": "git+https://github.com/Elrond-Giants/elrond-sft"
   },
   "keywords": [
     "elrond",
@@ -23,10 +23,10 @@
   "author": "Razvan Statescu <statescu.net>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop/issues"
+    "url": "https://github.com/Elrond-Giants/elrond-sft/issues"
   },
   "types": "build/types",
-  "homepage": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop#readme",
+  "homepage": "https://github.com/Elrond-Giants/elrond-sft#readme",
   "devDependencies": {
     "@types/figlet": "^1.5.4",
     "@types/node": "^17.0.39",

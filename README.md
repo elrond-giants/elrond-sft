@@ -1,5 +1,6 @@
 # Elrond SFT Issue & Airdrop
 
+[![NPM](https://nodei.co/npm/elrond-sft.png?compact=true)](https://www.npmjs.com/package/elrond-sft)
 This is a CLI tool you can use to execute SFT related operations on the Elrond Network.
 
 ## What can you do

@@ -3,8 +3,10 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 import { argv, exit } from 'process';
 
+import { issueToken } from './commands/issue-token';
+import { mintSft } from './commands/mint-sft';
+import { setRoles } from './commands/set-roles';
 import { chain } from './config';
-import { issueToken, mintSft, setRoles } from './issue-sft';
 import packageJson from './packageCopy.json';
 
 const COMMANDS = {

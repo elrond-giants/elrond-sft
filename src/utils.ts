@@ -1,4 +1,6 @@
-import { Account, IProvider, NetworkConfig, parseUserKey, ProxyProvider, UserSigner } from '@elrondnetwork/erdjs';
+import { Account } from '@elrondnetwork/erdjs';
+import { ApiNetworkProvider } from '@elrondnetwork/erdjs-network-providers';
+import { parseUserKey, UserSigner } from '@elrondnetwork/erdjs-walletcore';
 import { accessSync, readFileSync, writeFileSync } from 'fs';
 import { cwd, exit } from 'process';
 
@@ -39,11 +41,9 @@ export const getFileContents = (relativeFilePath: string, options: { isJSON?: bo
 };
 
 export const getProvider = () => {
-  return new ProxyProvider(proxyGateways[chain], { timeout: 10000 });
-};
-
-export const syncProviderConfig = async (provider: IProvider) => {
-  return NetworkConfig.getDefault().sync(provider);
+  return new ApiNetworkProvider(proxyGateways[chain], {
+    timeout: 10000,
+  });
 };
 
 export const prepareUserSigner = (walletPemKey: string) => {
@@ -54,10 +54,10 @@ export const publicEndpointSetup = async (_pemKeyFileName?: string) => {
   const walletPemKey = getFileContents(_pemKeyFileName || pemKeyFileName, { isJSON: false });
   // Provider type based on initial configuration
   const provider = getProvider();
-  await syncProviderConfig(provider);
 
   const userAccount = await prepareUserAccount(walletPemKey);
-  await userAccount.sync(provider);
+  const userAccountOnNetwork = await provider.getAccount(userAccount.address);
+  userAccount.update(userAccountOnNetwork);
 
   const signer = prepareUserSigner(walletPemKey);
 

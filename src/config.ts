@@ -21,11 +21,3 @@ export const chainId: { [key: string]: string } = {
 };
 
 export const issueTokenScAddress = "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u";
-
-export const getConfig = () => {
-  return {
-    chain,
-    proxyGateway: proxyGateways[chain],
-    explorer: elrondExplorer[chain],
-  };
-};

@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "es2015", "dom"],
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "module": "CommonJS",
-    "target": "es2015",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+    "outDir": "build",
+    "rootDir": "src",
+    "strict": true,
     "types": ["node"],
-    "declarationDir": "build/types"
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
 }

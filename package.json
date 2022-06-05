@@ -1,11 +1,12 @@
 {
   "name": "elrond-sft",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple CLI tool you can use to execute simple operations over Elrond SFTs (issue token, mint SFT, add qty, burn)",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf bin && node ./esbuild.config.js && tsc"
+    "build": "rimraf bin && tsc",
+    "start": "ts-node src/index.ts"
   },
   "bin": "build/index.js",
   "repository": {
@@ -27,14 +28,17 @@
   "types": "build/types",
   "homepage": "https://github.com/razvanstatescu/elrond-sft-issue-airdrop#readme",
   "devDependencies": {
+    "@types/figlet": "^1.5.4",
     "@types/node": "^17.0.39",
+    "@types/prompts": "^2.0.14",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.3"
   },
   "dependencies": {
     "@elrondnetwork/erdjs": "^9.0.3",
     "axios": "^0.27.2",
-    "esbuild": "^0.14.42",
+    "chalk": "4.1.2",
+    "figlet": "^1.5.2",
     "prompts": "^2.4.2"
   }
 }

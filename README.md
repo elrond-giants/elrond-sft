@@ -14,10 +14,6 @@ This is a CLI tool you can use to execute SFT related operations on the Elrond N
 
 `npm i elrond-sft`
 
-### Help
-
-Run `elrond-sft -h` to get a list of all available commands.
-
 ### Generate a PEM file wallet
 
 Make sure you have a PEM file wallet called `wallet.pem` in the current directly (the one you're running the package from).
@@ -48,6 +44,10 @@ By defualt, elrond-sft will run on devnet. If you wish to run on another chain, 
 - mainnet
 
 Example `CHAIN=testnet elrond-sft issue-token`
+
+## Help
+
+Run `elrond-sft -h` to get a list of all available commands.
 
 ## TODO
 

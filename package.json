@@ -1,12 +1,12 @@
 {
   "name": "elrond-sft",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple CLI tool you can use to execute simple operations over Elrond SFTs (issue token, mint SFT, add qty, burn)",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf bin && tsc",
-    "start": "ts-node src/index.ts"
+    "build": "rimraf build && cp ./package.json ./src/packageCopy.json && tsc",
+    "start": "cp ./package.json ./src/packageCopy.json && ts-node src/index.ts"
   },
   "bin": "build/index.js",
   "repository": {

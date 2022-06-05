@@ -16,7 +16,7 @@ This is a CLI tool you can use to execute SFT related operations on the Elrond N
 
 ### Generate a PEM file wallet
 
-Make sure you have a PEM file wallet in the current directly (the one you're running the package from).
+Make sure you have a PEM file wallet called `wallet.pem` in the current directly (the one you're running the package from).
 _You can use [erdpy](https://docs.elrond.com/sdk-and-tools/erdpy/erdpy/) to generate a PEM file wallet by running `erdpy wallet new --pem --output-path wallet`_
 
 ### Mint SFT
@@ -34,6 +34,16 @@ Before you mint an SFT you will need to issue a token and assign some roles to i
 
 3. Mint SFT
    Now that we have a token and the roles, you can finally mint the SFT by running `elrond-sft mint-sft`.
+
+### Chain
+
+By defualt, elrond-sft will run on devnet. If you wish to run on another chain, you can set an env var called `CHAIN` to:
+
+- devnet
+- testnet
+- mainnet
+
+Example `CHAIN=testnet elrond-sft issue-token`
 
 ## TODO
 

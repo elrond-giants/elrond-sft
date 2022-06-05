@@ -1,14 +1,14 @@
 import {
-    Address,
-    AddressValue,
-    Balance,
-    BytesValue,
-    ChainID,
-    ContractFunction,
-    GasLimit,
-    Transaction,
-    TransactionPayload,
-    U32Value,
+  Address,
+  AddressValue,
+  Balance,
+  BytesValue,
+  ChainID,
+  ContractFunction,
+  GasLimit,
+  Transaction,
+  TransactionPayload,
+  U32Value,
 } from '@elrondnetwork/erdjs/out';
 import axios from 'axios';
 import prompts, { PromptObject } from 'prompts';
@@ -93,7 +93,7 @@ export const issueToken = async () => {
       console.log(`Token identifier ${tokenIdentifier}`);
     }
   } catch (e) {
-    console.log(e);
+    console.log((e as Error)?.message);
   }
 };
 
@@ -137,7 +137,7 @@ export const setRoles = async () => {
 
     console.log(`Set Roles Transaction  ${elrondExplorer[chain]}/transactions/${txHash}`);
   } catch (e) {
-    console.log(e);
+    console.log((e as Error)?.message);
   }
 };
 
@@ -273,6 +273,6 @@ export const mintSft = async () => {
 
     console.log(`SFT Mint Transaction  ${elrondExplorer[chain]}/transactions/${txHash}`);
   } catch (e) {
-    console.log(e);
+    console.log((e as Error)?.message);
   }
 };

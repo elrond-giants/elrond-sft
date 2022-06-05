@@ -60,15 +60,16 @@ if (!command || !Object.values(COMMANDS).includes(command)) {
 
 console.log(chalk.yellow(`Running on ${chain.toUpperCase()}\n`));
 
+const commandParam = args ? args[3] : undefined;
 switch (command) {
   case COMMANDS.issueToken:
     issueToken();
     break;
   case COMMANDS.setRoles:
-    setRoles();
+    setRoles(commandParam);
     break;
   case COMMANDS.mintSft:
-    mintSft();
+    mintSft(commandParam);
     break;
   case COMMANDS.addSftQuantity:
     console.log("Not Implemented");

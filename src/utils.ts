@@ -68,7 +68,7 @@ export const publicEndpointSetup = async (_pemKeyFileName?: string) => {
   };
 };
 
-interface IConfig {
+export interface IConfig {
   tokenIdentifier: string;
 }
 

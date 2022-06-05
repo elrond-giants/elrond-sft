@@ -10,16 +10,19 @@ import {
 } from '@elrondnetwork/erdjs/out';
 
 import { chain, chainId, elrondExplorer, issueTokenScAddress, pemKeyFileName } from '../config';
-import { loadConfigFromFile, publicEndpointSetup } from '../utils';
+import { IConfig, loadConfigFromFile, publicEndpointSetup } from '../utils';
 
-export const setRoles = async () => {
+export const setRoles = async (_tokenIdentifier?: IConfig["tokenIdentifier"]) => {
   const config = loadConfigFromFile();
-  if (!config.tokenIdentifier) {
-    console.log('Token identifier not found. Please run "issue-token" command first.');
+
+  const tokenIdentifier = _tokenIdentifier || config?.tokenIdentifier;
+
+  if (!tokenIdentifier) {
+    console.log(
+      'Token identifier not found. Please run "issue-token" command first or input it manually (check docs for details).'
+    );
     return;
   }
-
-  const tokenIdentifier = config.tokenIdentifier;
 
   try {
     const { signer, provider, userAccount } = await publicEndpointSetup(pemKeyFileName);

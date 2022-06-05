@@ -33,6 +33,7 @@ const commandsArray = [...availableCommands, "--version", "-v", "--help", "-h"];
 if (command === "--version" || command === "-v") {
   cliHeader();
   console.log(`Version ${packageJson.version}`);
+  console.log(`erdjs version ${packageJson.dependencies["@elrondnetwork/erdjs"]}`);
   exit();
 }
 
